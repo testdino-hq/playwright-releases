@@ -1,0 +1,44 @@
+# Dependencies
+node_modules/
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/artifacts/
+
+# Generated screenshots / media
+/Screenshot/
+Screenshot.zip
+*.webm
+*.png
+*.jpg
+*.jpeg
+*.gif
+
+# Build / reports
+/MAR----*
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo

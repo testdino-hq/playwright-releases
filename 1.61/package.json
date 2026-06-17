@@ -1,0 +1,20 @@
+{
+  "name": "playwright-1-61-demos",
+  "version": "1.0.0",
+  "description": "Runnable demos for every Playwright 1.61 feature (for blog screenshots)",
+  "private": true,
+  "scripts": {
+    "test": "playwright test",
+    "report": "playwright show-report",
+    "webauthn": "playwright test tests/01-webauthn-passkeys.spec.ts",
+    "storage": "playwright test tests/02-web-storage.spec.ts",
+    "network": "playwright test tests/03-api-response-network.spec.ts",
+    "screencast": "playwright test tests/04-screencast.spec.ts",
+    "soft-poll": "playwright test tests/05-soft-poll.spec.ts",
+    "errors": "playwright test tests/06-aggregate-errors.spec.ts",
+    "complete": "playwright test tests/07-complete-workflow.spec.ts"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.61.0"
+  }
+}
