@@ -1,0 +1,12 @@
+[
+  {
+    "title": "known broken until the API ships",
+    "reason": "Blocked on PROJ-4412, backend endpoint not deployed",
+    "mode": "skip"
+  },
+  {
+    "title": "documented bug, tracked in PROJ-4413",
+    "reason": "Known bug: totals round down. Delete this entry when fixed.",
+    "mode": "fail"
+  }
+]
