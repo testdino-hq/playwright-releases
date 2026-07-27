@@ -4,8 +4,16 @@ import { statSync } from 'node:fs';
 // (1.62) WebP joins PNG and JPEG for screenshots and visual baselines.
 //
 // The quality knob is the whole story:
-//   quality: 100 (default) -> LOSSLESS webp. Safe for visual baselines.
-//   quality: < 100         -> LOSSY webp. Much smaller, NOT safe as a baseline.
+//
+//   quality: 100 (default) -> LOSSLESS webp. Pixel-exact comparison, roughly
+//                             25-35% smaller than png. Safe for baselines.
+//   quality: < 100         -> LOSSY webp. Much smaller again, but the
+//                             compression noise produces false diffs.
+//                             Fine for trace attachments and debug artifacts.
+//                             Never use it for a baseline.
+//
+// Existing .png baselines keep working unchanged. WebP only applies to
+// snapshots you explicitly name .webp.
 
 test('lossless webp is the default, and it is smaller than png', async ({ page }, testInfo) => {
   await page.goto('/');
