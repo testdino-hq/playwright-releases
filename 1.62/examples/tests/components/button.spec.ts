@@ -6,6 +6,22 @@ import { test, expect } from '@playwright/test';
 //   - no ctViteConfig
 // `test` and `expect` come from plain @playwright/test, and `mount` is a
 // built-in fixture that navigates to your gallery and renders a story by id.
+//
+// Migrating off @playwright/experimental-ct-*:
+//
+//   mount(<Button onClick={spy} />)   ->  story provides onClick and records
+//                                         the result into a hidden input
+//   component.update(<Button n={2}/>) ->  component.update({ n: 2 })
+//   beforeMount / afterMount          ->  the body of your gallery's window.mount
+//   hooksConfig per test              ->  props: mount('App/Routing', { route })
+//   ctViteConfig / ctPort             ->  gone; your dev server, your config
+//   defineConfig from the ct package  ->  plain defineConfig from @playwright/test
+//
+// The old packages still publish at 1.62.0, so both projects can run side by
+// side while you port spec by spec.
+//
+// One catch: story ids are strings, so renaming a story breaks specs at runtime
+// rather than compile time. mount<typeof Story> at least type-checks the props.
 
 test('renders the primary story', async ({ mount }) => {
   const component = await mount('components/Button/Primary');
