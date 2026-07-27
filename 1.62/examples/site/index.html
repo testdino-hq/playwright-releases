@@ -1,0 +1,33 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Playwright 1.62 examples</title>
+<style>
+  body { font: 16px system-ui, sans-serif; margin: 2rem; }
+  #tall { height: 2000px; }
+  #far { margin-top: 1500px; }
+  #status { font-weight: 600; }
+</style>
+
+<h1>Playwright 1.62 examples</h1>
+
+<button id="submit">Submit</button>
+<p id="status" data-testid="status">Idle</p>
+<div id="menu-host"><button id="menu">Menu</button></div>
+
+<div id="tall">
+  <button id="far">Far away button</button>
+</div>
+
+<script>
+  // Flips status to "Ready" a moment after Submit is clicked.
+  document.getElementById('submit').addEventListener('click', () => {
+    setTimeout(() => { document.getElementById('status').textContent = 'Ready'; }, 300);
+  });
+
+  // Adds aria-expanded only after a delay, so waitForFunction has something to wait for.
+  document.getElementById('menu').addEventListener('click', () => {
+    setTimeout(() => {
+      document.getElementById('menu').setAttribute('aria-expanded', 'true');
+    }, 250);
+  });
+</script>

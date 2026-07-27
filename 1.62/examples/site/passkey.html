@@ -1,0 +1,42 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Passkey demo</title>
+<style> body { font: 16px system-ui, sans-serif; margin: 2rem; } </style>
+
+<h1>Passkey demo</h1>
+<button id="register">Register passkey</button>
+<button id="login">Sign in with passkey</button>
+<p data-testid="result">-</p>
+
+<script>
+  const result = document.querySelector('[data-testid=result]');
+  const challenge = new Uint8Array(32).fill(1);
+
+  document.getElementById('register').addEventListener('click', async () => {
+    try {
+      const cred = await navigator.credentials.create({
+        publicKey: {
+          challenge,
+          rp: { name: 'Demo', id: 'localhost' },
+          user: { id: new Uint8Array(16).fill(2), name: 'ada', displayName: 'Ada' },
+          pubKeyCredParams: [{ type: 'public-key', alg: -7 }],
+          authenticatorSelection: { residentKey: 'required', userVerification: 'preferred' },
+        },
+      });
+      result.textContent = cred ? 'registered' : 'failed';
+    } catch (e) {
+      result.textContent = 'error: ' + e.message;
+    }
+  });
+
+  document.getElementById('login').addEventListener('click', async () => {
+    try {
+      const assertion = await navigator.credentials.get({
+        publicKey: { challenge, rpId: 'localhost', userVerification: 'preferred' },
+      });
+      result.textContent = assertion ? 'signed-in' : 'failed';
+    } catch (e) {
+      result.textContent = 'error: ' + e.message;
+    }
+  });
+</script>

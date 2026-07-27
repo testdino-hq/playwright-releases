@@ -1,0 +1,9 @@
+node_modules/
+test-results/
+playwright-report/
+blob-report/
+.playwright-cli/
+
+# Visual baselines are platform- and browser-specific. The first `npm test`
+# writes them locally; committing one machine's PNG/WebP only creates noise.
+**/*-snapshots/

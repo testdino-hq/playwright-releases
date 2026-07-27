@@ -1,0 +1,24 @@
+{
+  "name": "playwright-1-62-examples",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Runnable examples for every Playwright 1.62 feature.",
+  "type": "module",
+  "scripts": {
+    "test": "playwright test",
+    "abort": "playwright test 01-abort-signal --project=core",
+    "webp": "playwright test 02-webp-screenshots --project=core",
+    "waitfor": "playwright test 03-locator-wait-for-function --project=core",
+    "scroll": "playwright test 04-scroll-none --project=core",
+    "timing": "playwright test 05-api-response-timing --project=core",
+    "evaluate": "playwright test 06-evaluate-functions --project=core",
+    "passkeys": "playwright test 07-storage-state-credentials --project=core",
+    "components": "playwright test --project=components",
+    "quarantine": "playwright test 08-preprocess-quarantine --project=core",
+    "quarantine:off": "NO_QUARANTINE=1 playwright test 08-preprocess-quarantine --project=core",
+    "report": "playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.62.0"
+  }
+}
