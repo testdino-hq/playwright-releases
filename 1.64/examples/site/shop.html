@@ -1,0 +1,57 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Cat shop (WebMCP)</title>
+<style> body { font: 16px system-ui, sans-serif; margin: 2rem; } </style>
+
+<h1>Cat shop</h1>
+<ul id="catalog">
+  <li data-sku="CAT-001">Cardboard box, $5</li>
+  <li data-sku="CAT-002">Laser pointer, $12</li>
+  <li data-sku="CAT-003">Catnip mouse, $3</li>
+</ul>
+<p role="status" aria-label="Cart" id="cart">0 items</p>
+
+<script>
+  // The page exposes two tools to AI agents through the experimental WebMCP API.
+  // Agents read the name, description and inputSchema, then call execute().
+  const cart = [];
+  const catalog = [...document.querySelectorAll('#catalog li')]
+      .map(li => ({ sku: li.dataset.sku, title: li.textContent }));
+  const text = value => ({ content: [{ type: 'text', text: value }] });
+
+  const modelContext = document.modelContext || navigator.modelContext;
+  if (modelContext) {
+    modelContext.registerTool({
+      name: 'search_catalog',
+      description: 'Search the cat shop catalog by keyword and return matching products with their SKUs.',
+      inputSchema: {
+        type: 'object',
+        properties: { query: { type: 'string', description: 'Keyword, for example "box"' } },
+        required: ['query'],
+      },
+      annotations: { readOnlyHint: true },
+      execute: async ({ query }) => text(JSON.stringify(
+          catalog.filter(p => p.title.toLowerCase().includes(query.toLowerCase())))),
+    });
+
+    modelContext.registerTool({
+      name: 'add_to_cart',
+      description: 'Add a product to the shopping cart by SKU. Updates the cart shown to the user.',
+      inputSchema: {
+        type: 'object',
+        properties: {
+          sku: { type: 'string' },
+          quantity: { type: 'number', minimum: 1 },
+        },
+        required: ['sku'],
+      },
+      execute: async ({ sku, quantity = 1 }) => {
+        if (!catalog.some(p => p.sku === sku))
+          throw new Error(`Unknown SKU ${sku}`);
+        for (let i = 0; i < quantity; i++) cart.push(sku);
+        document.getElementById('cart').textContent = `${cart.length} items`;
+        return text(`Added ${quantity} x ${sku}`);
+      },
+    });
+  }
+</script>
