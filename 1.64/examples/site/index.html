@@ -1,0 +1,59 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Playwright 1.64 examples</title>
+<style>
+  body { font: 16px system-ui, sans-serif; margin: 2rem; max-width: 48rem; }
+  table { border-collapse: collapse; margin: 1rem 0; }
+  td, th { border: 1px solid #ccc; padding: .3rem .6rem; }
+  #hidden-frame { display: none; }
+</style>
+
+<h1>Playwright 1.64 examples</h1>
+
+<h2>Orders</h2>
+<table aria-label="Orders">
+  <thead><tr><th>Order</th><th>Customer</th><th>Item</th><th>Status</th></tr></thead>
+  <tbody>
+    <tr><td>#1001</td><td>Ada</td><td>Apple</td><td><button>Refund</button></td></tr>
+    <tr><td>#1002</td><td>Grace</td><td>Banana</td><td><button>Refund</button></td></tr>
+    <tr><td>#1003</td><td>Linus</td><td>Cherry</td><td><button>Refund</button></td></tr>
+  </tbody>
+</table>
+<p role="status" aria-label="Last refund" id="last-refund">None</p>
+
+<h2>Sign up</h2>
+<form id="signup">
+  <label>Email <input type="email" name="email"></label>
+  <button type="submit">Create account</button>
+</form>
+<p data-testid="signup-result"></p>
+
+<h2>Shadow DOM</h2>
+<price-tag amount="19.99"></price-tag>
+
+<h2>Frames</h2>
+<iframe id="hidden-frame" title="Hidden widget" srcdoc="<button>Inside hidden iframe</button>"></iframe>
+<iframe id="visible-frame" title="Visible widget" srcdoc="<button>Inside visible iframe</button>"></iframe>
+
+<script>
+  document.querySelectorAll('tbody tr').forEach(row => {
+    row.querySelector('button').addEventListener('click', () => {
+      document.getElementById('last-refund').textContent = row.cells[0].textContent;
+    });
+  });
+
+  document.getElementById('signup').addEventListener('submit', e => {
+    e.preventDefault();
+    const email = new FormData(e.target).get('email');
+    document.querySelector('[data-testid=signup-result]').textContent = `Welcome, ${email}`;
+  });
+
+  // A web component with an open shadow root. page.content() used to return
+  // only <price-tag amount="19.99"></price-tag>, with the price missing.
+  customElements.define('price-tag', class extends HTMLElement {
+    connectedCallback() {
+      const root = this.attachShadow({ mode: 'open' });
+      root.innerHTML = `<strong class="price">$${this.getAttribute('amount')}</strong>`;
+    }
+  });
+</script>
