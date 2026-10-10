@@ -7,7 +7,7 @@ published package. What's new in each Playwright version, with commented specs y
 
 [![Playwright 1.64 what's new: --shuffle, locator.within(), project.default, 60fps test videos, WebMCP](./1.64/video/thumbnail.png)](https://github.com/testdino-hq/playwright-releases/raw/main/1.64/video/playwright-1.64-whats-new.mp4)
 
-2.5 minutes, one chapter per feature: the problem before, the 1.64 solution, and a practical use
+3 minutes, one chapter per feature: the problem before, the 1.64 solution, and a practical use
 case. [Play the video](https://github.com/testdino-hq/playwright-releases/raw/main/1.64/video/playwright-1.64-whats-new.mp4)
 or read the [1.64 breakdown](./1.64/readme.md).
 
