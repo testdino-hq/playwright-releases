@@ -1,0 +1,39 @@
+{
+  "name": "playwright-1-64-examples",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Runnable, verified examples for every Playwright 1.64 feature: --shuffle, locator.within(), project default, describe locks, getByRef, WebMCP, video fps.",
+  "keywords": [
+    "playwright",
+    "playwright 1.64",
+    "playwright shuffle",
+    "locator.within",
+    "webmcp",
+    "playwright test",
+    "e2e testing",
+    "test automation",
+    "qa"
+  ],
+  "type": "module",
+  "scripts": {
+    "test": "playwright test",
+    "all": "playwright test --project=* --workers=1",
+    "shuffle": "playwright test --shuffle",
+    "shuffle:demo": "playwright test --project=order-dependent --workers=1 --shuffle=42",
+    "shuffle:demo:ordered": "playwright test --project=order-dependent --workers=1",
+    "within": "playwright test 02-locator-within --project=core",
+    "lock": "playwright test 03-describe-lock --project=core",
+    "ref": "playwright test 04-get-by-ref --project=core",
+    "shadow": "playwright test 05-content-include-shadow --project=core",
+    "cookies": "playwright test 06-api-request-cookies --project=core",
+    "video": "playwright test 07-video-fps --project=core",
+    "passkeys": "playwright test 08-passkey-sign-count --project=core",
+    "snapshots": "playwright test 09-webp --project=core",
+    "breaking": "playwright test 10-breaking-changes --project=core",
+    "webmcp": "playwright test --project=webmcp",
+    "report": "playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.0"
+  }
+}
