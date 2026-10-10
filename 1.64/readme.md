@@ -10,19 +10,19 @@ describe-level test locks, 60 fps styled test videos, and WebMCP testing with
 [![Playwright 1.64 what's new video: --shuffle, locator.within(), project.default, 60fps test videos, WebMCP](./video/thumbnail.png)](https://github.com/testdino-hq/playwright-releases/raw/main/1.64/video/playwright-1.64-whats-new.mp4)
 
 [Play the video](https://github.com/testdino-hq/playwright-releases/raw/main/1.64/video/playwright-1.64-whats-new.mp4)
-(2:31, 1080p, [mp4 in this repo](./video/playwright-1.64-whats-new.mp4)). For each feature it covers
+(2:36, 1080p, [mp4 in this repo](./video/playwright-1.64-whats-new.mp4)). For each feature it covers
 the problem before 1.64, the new solution, and a practical use case.
 
 | Time | Chapter | Example |
 | --- | --- | --- |
 | 0:00 | Release changelog | |
 | 0:04 | `--shuffle`: catch order-dependent tests | [`01-shuffle`](./examples/tests/01-shuffle.spec.ts) |
-| 0:46 | `locator.within()`: the 3rd cell of every row | [`02-locator-within`](./examples/tests/02-locator-within.spec.ts) |
-| 1:23 | `project.default`: opt-in projects | [`playwright.config.ts`](./examples/playwright.config.ts) |
-| 1:38 | Better test videos: fps, CSS styles, VP9 | [`07-video-fps`](./examples/tests/07-video-fps.spec.ts) |
-| 1:53 | WebMCP: test the tools your site gives AI agents | [`shop.webmcp`](./examples/tests/shop.webmcp.spec.ts) |
-| 2:08 | Quick hits and breaking changes | [`10-breaking-changes`](./examples/tests/10-breaking-changes.spec.ts) |
-| 2:22 | Upgrade | |
+| 0:49 | `locator.within()`: the 3rd cell of every row | [`02-locator-within`](./examples/tests/02-locator-within.spec.ts) |
+| 1:26 | `project.default`: opt-in projects | [`playwright.config.ts`](./examples/playwright.config.ts) |
+| 1:41 | Better test videos: fps, CSS styles, VP9 | [`07-video-fps`](./examples/tests/07-video-fps.spec.ts) |
+| 1:56 | WebMCP: test the tools your site gives AI agents | [`shop.webmcp`](./examples/tests/shop.webmcp.spec.ts) |
+| 2:11 | Quick hits and breaking changes | [`10-breaking-changes`](./examples/tests/10-breaking-changes.spec.ts) |
+| 2:27 | Upgrade | |
 
 ## Run
 
